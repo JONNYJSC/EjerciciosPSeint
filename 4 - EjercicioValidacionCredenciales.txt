@@ -163,6 +163,43 @@ Sistema bloqueado permanentemente
 
 Resumen de los 4 problemas resueltos
 Problema	Tema principal	Estructura clave
+
+---------------------------------------------------------------------------------------------------------------------
+
+Algoritmo SeguridadAcceso
+	Definir clave, codigo, intentos Como Entero
+	Definir accesoConcedido Como Logico
+	
+	intentos <- 0
+	accesoConcedido <- Falso
+	
+	Repetir
+		Escribir "--- PANEL DE ACCESO RESTRINGIDO ---"
+		Escribir "Ingrese clave de acceso:"
+		Leer clave
+		Escribir "Ingrese código de seguridad (1-3):"
+		Leer codigo
+		
+		Si clave = 2026 Y codigo = 1 Entonces
+			Escribir "Acceso concedido. Bienvenido al sistema."
+			accesoConcedido <- Verdadero
+		Sino
+			intentos <- intentos + 1
+			Si intentos < 3 Entonces
+				Escribir "Credenciales incorrectas. Intentos restantes: ", (3 - intentos)
+			FinSi
+		Fin Si
+		
+	Hasta Que accesoConcedido = Verdadero O intentos = 3
+	
+	Si intentos = 3 Y accesoConcedido = Falso Entonces
+		Escribir "****************************************"
+		Escribir "ALERTA: Intento de intrusión detectado."
+		Escribir "El sistema se ha bloqueado permanentemente."
+		Escribir "****************************************"
+	FinSi
+	
+FinAlgoritmo
 1	Control de stock	Mientras + validación
 2	Sensor de presión	Mientras + condicional anidado
 3	Menú de usuarios	Repetir + Segun + De Otro Modo
