@@ -93,3 +93,35 @@ Seleccione una opción:
    ¡Hasta luego!
 ================================
 SESIÓN FINALIZADA
+
+-----------------------------------------------------------------------------
+
+Algoritmo GestionUsuarios
+	Definir opcion Como Entero
+	
+	Repetir
+		Escribir "--- SISTEMA DE ADMINISTRACIÓN ---"
+		Escribir "1. Agregar Usuario"
+		Escribir "2. Listar Usuarios"
+		Escribir "3. Configuración"
+		Escribir "4. Salir"
+		Escribir "Seleccione una opción (1-4):"
+		Leer opcion
+		
+		Segun opcion Hacer
+			1:
+				Escribir "Acción: Abriendo formulario para nuevo usuario..."
+			2:
+				Escribir "Acción: Cargando base de datos de usuarios..."
+			3:
+				Escribir "Acción: Entrando al panel de ajustes del sistema..."
+			4:
+				Escribir "Cerrando sesión. ¡Hasta luego!"
+			De Otro Modo:
+				Escribir "Error: Opción no válida. Intente de nuevo."
+		Fin Segun
+		Escribir "" // Salto de línea para claridad
+		
+	Hasta Que opcion = 4
+	
+FinAlgoritmo
