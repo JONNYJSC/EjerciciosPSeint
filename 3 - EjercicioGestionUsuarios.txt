@@ -1,0 +1,95 @@
+Algoritmo GestionUsuarios
+    // Declaración de variables
+    Definir opcion Como Entero
+    
+    Escribir "=== SISTEMA DE GESTIÓN DE USUARIOS ==="
+    Escribir ""
+    
+    Repetir
+        // Mostrar menú de opciones
+        Escribir "----- MENÚ PRINCIPAL -----"
+        Escribir "1. Agregar Usuario"
+        Escribir "2. Listar Usuarios"
+        Escribir "3. Configuración"
+        Escribir "4. Salir"
+        Escribir "--------------------------"
+        Escribir "Seleccione una opción:"
+        Leer opcion
+        
+        // Estructura Según para procesar la opción
+        Segun opcion Hacer
+            Caso 1:
+                Escribir ">> ACCIÓN: Agregar Usuario"
+                Escribir "   (Funcionalidad: registra un nuevo usuario en el sistema)"
+                Escribir ""
+            Caso 2:
+                Escribir ">> ACCIÓN: Listar Usuarios"
+                Escribir "   (Funcionalidad: muestra todos los usuarios registrados)"
+                Escribir ""
+            Caso 3:
+                Escribir ">> ACCIÓN: Configuración"
+                Escribir "   (Funcionalidad: ajusta parámetros del sistema)"
+                Escribir ""
+            Caso 4:
+                Escribir ">> Saliendo del sistema..."
+                Escribir "   ¡Hasta luego!"
+            De Otro Modo:
+                Escribir ">> ERROR: Opción no válida"
+                Escribir "   Por favor, seleccione una opción entre 1 y 4"
+                Escribir ""
+        FinSegun
+        
+    Hasta Que opcion = 4
+    
+    Escribir "================================"
+    Escribir "SESIÓN FINALIZADA"
+FinAlgoritmo
+
+=========================================================================================================================
+
+Explicación paso a paso
+1. Estructura utilizada
+Repetir...Hasta Que: Garantiza que el menú se muestre al menos una vez
+
+Segun...FinSegun: Maneja múltiples opciones de forma ordenada
+
+De Otro Modo: Captura entradas inválidas
+
+=========================================================================================================================
+
+=== SISTEMA DE GESTIÓN DE USUARIOS ===
+
+----- MENÚ PRINCIPAL -----
+1. Agregar Usuario
+2. Listar Usuarios
+3. Configuración
+4. Salir
+--------------------------
+Seleccione una opción:
+1
+>> ACCIÓN: Agregar Usuario
+   (Funcionalidad: registra un nuevo usuario en el sistema)
+
+----- MENÚ PRINCIPAL -----
+1. Agregar Usuario
+2. Listar Usuarios
+3. Configuración
+4. Salir
+--------------------------
+Seleccione una opción:
+5
+>> ERROR: Opción no válida
+   Por favor, seleccione una opción entre 1 y 4
+
+----- MENÚ PRINCIPAL -----
+1. Agregar Usuario
+2. Listar Usuarios
+3. Configuración
+4. Salir
+--------------------------
+Seleccione una opción:
+4
+>> Saliendo del sistema...
+   ¡Hasta luego!
+================================
+SESIÓN FINALIZADA
