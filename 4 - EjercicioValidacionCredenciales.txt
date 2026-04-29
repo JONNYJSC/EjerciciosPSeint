@@ -1,0 +1,169 @@
+Algoritmo ValidacionCredenciales
+    // Declaración de variables
+    Definir clave_acceso, codigo_seguridad Como Entero
+    Definir intentos_fallidos Como Entero
+    
+    // Constantes de validación
+    Definir CLAVE_CORRECTA, CODIGO_REQUERIDO Como Entero
+    CLAVE_CORRECTA <- 2026
+    CODIGO_REQUERIDO <- 1
+    
+    // Inicialización
+    intentos_fallidos <- 0
+    clave_acceso <- 0
+    codigo_seguridad <- 0
+    
+    Escribir "=== PANEL DE ACCESO RESTRINGIDO ==="
+    Escribir "Sistema de seguridad de alto nivel"
+    Escribir ""
+    
+    // Bucle de validación con límite de intentos
+    Repetir
+        // Verificar si se alcanzó el límite de intentos
+        Si intentos_fallidos >= 3 Entonces
+            Escribir "========================================"
+            Escribir "¡ALERTA DE SEGURIDAD!"
+            Escribir "Intento de intrusión detectado"
+            Escribir "Sistema bloqueado permanentemente"
+            Escribir "========================================"
+            intentos_fallidos <- 3  // Asegurar salida del bucle
+        Sino
+            // Solicitar credenciales
+            Escribir "--- Intento N°", intentos_fallidos + 1, " ---"
+            Escribir "Ingrese clave de acceso (numérica):"
+            Leer clave_acceso
+            Escribir "Ingrese código de seguridad (1-3):"
+            Leer codigo_seguridad
+            
+            // Validar credenciales
+            Si clave_acceso = CLAVE_CORRECTA Y codigo_seguridad = CODIGO_REQUERIDO Entonces
+                Escribir ""
+                Escribir "========================================"
+                Escribir "✔ ACCESO CONCEDIDO"
+                Escribir "Bienvenido al sistema administrativo"
+                Escribir "========================================"
+                intentos_fallidos <- 3  // Salir del bucle
+            Sino
+                intentos_fallidos <- intentos_fallidos + 1
+                Escribir "✘ CREDENCIALES INCORRECTAS"
+                Escribir "Intentos fallidos: ", intentos_fallidos, "/3"
+                
+                // Mensajes de ayuda según el error
+                Si clave_acceso <> CLAVE_CORRECTA Entonces
+                    Escribir "   → La clave de acceso es incorrecta"
+                FinSi
+                Si codigo_seguridad <> CODIGO_REQUERIDO Entonces
+                    Escribir "   → El código de seguridad debe ser 1"
+                FinSi
+                Escribir ""
+            FinSi
+        FinSi
+        
+    Hasta Que intentos_fallidos >= 3
+    
+    Si intentos_fallidos = 3 Y (clave_acceso <> CLAVE_CORRECTA O codigo_seguridad <> CODIGO_REQUERIDO) Entonces
+        // Mensaje de bloqueo ya mostrado dentro del bucle
+    FinSi
+FinAlgoritmo
+
+=========================================================================================================================
+
+1. Variables y constantes
+Variable	Propósito
+clave_acceso	Almacena la clave numérica ingresada
+codigo_seguridad	Almacena el código (1-3) ingresado
+intentos_fallidos	Contador de intentos incorrectos
+CLAVE_CORRECTA	Constante con valor 2026
+CODIGO_REQUERIDO	Constante con valor 1
+2. Lógica del algoritmo
+Condición de éxito: clave_acceso = 2026 Y codigo_seguridad = 1
+
+Condición de bloqueo: 3 intentos fallidos consecutivos
+
+Flujo:
+
+Inicializar intentos_fallidos = 0
+
+Repetir solicitud de credenciales
+
+Validar según la condición AND
+
+Si es correcto → Mostrar "Acceso Concedido" y salir
+
+Si es incorrecto → Incrementar contador
+
+Si intentos_fallidos >= 3 → Mostrar "Intento de intrusión detectado" y terminar
+
+=========================================================================================================================
+3. Ejemplo de ejecución (acceso exitoso)
+
+=== PANEL DE ACCESO RESTRINGIDO ===
+Sistema de seguridad de alto nivel
+
+--- Intento N°1 ---
+Ingrese clave de acceso (numérica):
+2026
+Ingrese código de seguridad (1-3):
+1
+
+========================================
+✔ ACCESO CONCEDIDO
+Bienvenido al sistema administrativo
+========================================
+
+=========================================================================================================================
+
+4. Ejemplo de ejecución (bloqueo por 3 intentos fallidos)
+
+=== PANEL DE ACCESO RESTRINGIDO ===
+Sistema de seguridad de alto nivel
+
+--- Intento N°1 ---
+Ingrese clave de acceso (numérica):
+1234
+Ingrese código de seguridad (1-3):
+2
+✘ CREDENCIALES INCORRECTAS
+Intentos fallidos: 1/3
+   → La clave de acceso es incorrecta
+   → El código de seguridad debe ser 1
+
+--- Intento N°2 ---
+Ingrese clave de acceso (numérica):
+2026
+Ingrese código de seguridad (1-3):
+3
+✘ CREDENCIALES INCORRECTAS
+Intentos fallidos: 2/3
+   → El código de seguridad debe ser 1
+
+--- Intento N°3 ---
+Ingrese clave de acceso (numérica):
+1111
+Ingrese código de seguridad (1-3):
+1
+✘ CREDENCIALES INCORRECTAS
+Intentos fallidos: 3/3
+   → La clave de acceso es incorrecta
+
+========================================
+¡ALERTA DE SEGURIDAD!
+Intento de intrusión detectado
+Sistema bloqueado permanentemente
+========================================
+
+=========================================================================================================================
+
+5. Puntos clave del ejercicio
+✅ Doble validación: Requiere ambas condiciones simultáneas (AND lógico)
+✅ Contador de intentos: Incrementa solo con credenciales incorrectas
+✅ Límite de 3 intentos: El bucle termina al alcanzar 3 fallos
+✅ Mensaje de intrusión: Se muestra explícitamente cuando se supera el límite
+✅ Repetir...Hasta Que: Garantiza al menos un intento de validación
+
+Resumen de los 4 problemas resueltos
+Problema	Tema principal	Estructura clave
+1	Control de stock	Mientras + validación
+2	Sensor de presión	Mientras + condicional anidado
+3	Menú de usuarios	Repetir + Segun + De Otro Modo
+4	Validación de acceso	Repetir + contador de intentos + condición AND
