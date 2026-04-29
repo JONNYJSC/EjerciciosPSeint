@@ -127,3 +127,39 @@ Mostrar mensaje "Existencias insuficientes"
 No realizar la resta
 
 Paso 3: Al salir del bucle (stock = 0), mostrar el total de pedidos exitosos
+
+-----------------------------------------------------------------------------------------------------
+
+Algoritmo ControlSalidaBodega
+	Definir stock, cantidadSolicitada, pedidosExitosos Como Entero
+	
+	Escribir "Ingrese la cantidad inicial de stock en bodega:"
+	Leer stock
+	
+	pedidosExitosos <- 0
+	
+	// El ciclo se ejecuta mientras haya productos disponibles
+	Mientras stock > 0 Hacer
+		Escribir "--- Stock actual: ", stock, " unidades ---"
+		Escribir "Ingrese la cantidad de artículos a extraer:"
+		Leer cantidadSolicitada
+		
+		Si cantidadSolicitada > stock Entonces
+			Escribir "Error: Existencias insuficientes. No se puede procesar el pedido."
+		Sino
+			Si cantidadSolicitada <= 0 Entonces
+				Escribir "Error: La cantidad debe ser mayor a cero."
+			Sino
+				// Si hay stock suficiente, restamos y contamos el pedido
+				stock <- stock - cantidadSolicitada
+				pedidosExitosos <- pedidosExitosos + 1
+				Escribir "Pedido procesado con éxito. Quedan ", stock, " unidades."
+			FinSi
+		Fin Si
+		
+		Escribir "" // Espacio estético
+	Fin Mientras
+	
+	Escribir "El stock ha llegado a cero."
+	Escribir "Total de pedidos exitosos realizados: ", pedidosExitosos
+FinAlgoritmo
