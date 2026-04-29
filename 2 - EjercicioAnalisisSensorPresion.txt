@@ -129,3 +129,45 @@ Presión más alta registrada en toda la sesión: 200 psi
 Promedio de presiones en rango normal (≤ 150 psi): 107.5 psi
 Total de lecturas normales procesadas: 2
 ================================
+
+----------------------------------------------------------------------------------------------------
+
+Algoritmo AnalisisSensorPresion
+	Definir presion, sumaNormal, contadorNormal, maximo Como Real
+	
+	sumaNormal <- 0
+	contadorNormal <- 0
+	maximo <- 0
+	
+	Escribir "Ingrese la presión en psi (0 o negativo para salir):"
+	Leer presion
+	
+	Mientras presion > 0 Hacer
+		// Actualizar la lectura más alta registrada (independientemente del rango)
+		Si presion > maximo Entonces
+			maximo <- presion
+		FinSi
+		
+		// Categorización y procesamiento
+		Si presion > 150 Entonces
+			Escribir ">>> ALERTA CRÍTICA: Presión excede los 150 psi <<<"
+		Sino
+			// Solo sumamos al promedio si está en rango normal
+			sumaNormal <- sumaNormal + presion
+			contadorNormal <- contadorNormal + 1
+		FinSi
+		
+		Escribir "Ingrese la siguiente lectura:"
+		Leer presion
+	Fin Mientras
+	
+	Escribir "--- Reporte Final de Sesión ---"
+	Escribir "Lectura más alta registrada: ", maximo, " psi"
+	
+	Si contadorNormal > 0 Entonces
+		Escribir "Promedio de presiones en rango normal: ", (sumaNormal / contadorNormal), " psi"
+	Sino
+		Escribir "No se registraron lecturas en rango normal."
+	FinSi
+	
+FinAlgoritmo
