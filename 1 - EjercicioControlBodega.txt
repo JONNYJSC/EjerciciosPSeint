@@ -1,0 +1,129 @@
+Algoritmo ControlBodega
+    // Declaración de variables
+    Definir cantidad_inicial, stock_actual, cantidad_solicitada Como Entero
+    Definir pedidos_exitosos Como Entero
+    
+    // Inicialización de variables
+    pedidos_exitosos <- 0
+    
+    // Solicitar stock inicial al usuario
+    Escribir "=== CONTROL DE SALIDA DE BODEGA ==="
+    Escribir "Ingrese la cantidad inicial de stock:"
+    Leer cantidad_inicial
+    
+    // Validar que el stock inicial sea positivo
+    Si cantidad_inicial <= 0 Entonces
+        Escribir "Error: El stock inicial debe ser mayor a cero."
+    Sino
+        stock_actual <- cantidad_inicial
+        Escribir "Stock inicial: ", stock_actual, " unidades"
+        Escribir ""
+        
+        // Bucle principal: mientras haya stock disponible
+        Mientras stock_actual > 0 Hacer
+            Escribir "--- Pedido N°", pedidos_exitosos + 1, " ---"
+            Escribir "Stock disponible: ", stock_actual, " unidades"
+            Escribir "Ingrese la cantidad de artículos a extraer:"
+            Leer cantidad_solicitada
+            
+            // Validar que la cantidad solicitada sea positiva
+            Si cantidad_solicitada <= 0 Entonces
+                Escribir "Error: La cantidad debe ser mayor a cero."
+            Sino
+                // Validar si hay suficiente stock
+                Si cantidad_solicitada <= stock_actual Entonces
+                    stock_actual <- stock_actual - cantidad_solicitada
+                    pedidos_exitosos <- pedidos_exitosos + 1
+                    Escribir "Pedido exitoso. Se extrajeron ", cantidad_solicitada, " unidades."
+                    Escribir "Stock restante: ", stock_actual, " unidades"
+                Sino
+                    Escribir "Existencias insuficientes. No se realizó la resta."
+                    Escribir "Stock disponible: ", stock_actual, " unidades"
+                FinSi
+            FinSi
+            
+            Escribir "" // Línea en blanco para separar pedidos
+        FinMientras
+        
+        // Mostrar resultados finales
+        Escribir "================================"
+        Escribir "PROCESO FINALIZADO"
+        Escribir "Stock final: ", stock_actual, " unidades"
+        Escribir "Total de pedidos exitosos realizados: ", pedidos_exitosos
+        Escribir "================================"
+    FinSi
+FinAlgoritmo
+
+===============================================================================================================
+
+Explicación paso a paso
+1. Variables utilizadas
+cantidad_inicial: Stock con el que empieza la bodega
+
+stock_actual: Stock disponible en cada momento (se va actualizando)
+
+cantidad_solicitada: Lo que el usuario pide extraer en cada pedido
+
+pedidos_exitosos: Contador de pedidos que se completaron correctamente
+
+2. Lógica del algoritmo
+Paso 1: Solicitar y validar el stock inicial (debe ser positivo)
+
+Paso 2: Entrar en un bucle Mientras stock_actual > 0
+
+Mostrar stock disponible
+
+Solicitar cantidad a extraer
+
+Validar que la cantidad sea positiva
+
+Si la cantidad es válida y no supera el stock:
+
+Restar del stock
+
+Incrementar contador de pedidos exitosos
+
+Si la cantidad supera el stock:
+
+Mostrar mensaje "Existencias insuficientes"
+
+No realizar la resta
+
+Paso 3: Al salir del bucle (stock = 0), mostrar el total de pedidos exitosos
+
+===========================================================================================================
+
+Explicación paso a paso
+1. Variables utilizadas
+cantidad_inicial: Stock con el que empieza la bodega
+
+stock_actual: Stock disponible en cada momento (se va actualizando)
+
+cantidad_solicitada: Lo que el usuario pide extraer en cada pedido
+
+pedidos_exitosos: Contador de pedidos que se completaron correctamente
+
+2. Lógica del algoritmo
+Paso 1: Solicitar y validar el stock inicial (debe ser positivo)
+
+Paso 2: Entrar en un bucle Mientras stock_actual > 0
+
+Mostrar stock disponible
+
+Solicitar cantidad a extraer
+
+Validar que la cantidad sea positiva
+
+Si la cantidad es válida y no supera el stock:
+
+Restar del stock
+
+Incrementar contador de pedidos exitosos
+
+Si la cantidad supera el stock:
+
+Mostrar mensaje "Existencias insuficientes"
+
+No realizar la resta
+
+Paso 3: Al salir del bucle (stock = 0), mostrar el total de pedidos exitosos
