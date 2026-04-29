@@ -1,0 +1,131 @@
+Algoritmo AnalisisSensorPresion
+    // Declaración de variables
+    Definir presion, suma_presiones_normales, contador_normales Como Real
+    Definir presion_maxima, presion_ingresada Como Real
+    
+    // Inicialización de variables
+    suma_presiones_normales <- 0
+    contador_normales <- 0
+    presion_maxima <- -1  // Inicializar con -1 para detectar la primera lectura
+    presion_ingresada <- 1 // Valor positivo para iniciar el bucle
+    
+    Escribir "=== ANÁLISIS DE SENSOR DE PRESIÓN INDUSTRIAL ==="
+    Escribir "Ingrese lecturas de presión (psi) - Valores positivos para continuar"
+    Escribir "Para finalizar, ingrese 0 o un número negativo"
+    Escribir ""
+    
+    // Bucle principal: mientras se ingresen presiones positivas
+    Mientras presion_ingresada > 0 Hacer
+        Escribir "Ingrese la lectura de presión (psi):"
+        Leer presion_ingresada
+        
+        // Verificar si la presión es positiva para procesarla
+        Si presion_ingresada > 0 Entonces
+            presion <- presion_ingresada
+            
+            // Actualizar presión máxima registrada
+            Si presion > presion_maxima Entonces
+                presion_maxima <- presion
+            FinSi
+            
+            // Categorizar según el valor de presión
+            Si presion > 150 Entonces
+                Escribir ">> ALERTA CRÍTICA: Presión de ", presion, " psi excede el límite seguro (150 psi)"
+            Sino
+                // Presión en rango normal
+                Escribir ">> Presión normal: ", presion, " psi"
+                suma_presiones_normales <- suma_presiones_normales + presion
+                contador_normales <- contador_normales + 1
+            FinSi
+            
+            Escribir "" // Línea en blanco para separar lecturas
+        FinSi
+    FinMientras
+    
+    // Mostrar resultados finales
+    Escribir "================================"
+    Escribir "FIN DE LA SESIÓN DE MONITOREO"
+    Escribir "================================"
+    
+    // Verificar si se ingresaron presiones normales
+    Si contador_normales > 0 Entonces
+        Escribir "Presión más alta registrada en toda la sesión: ", presion_maxima, " psi"
+        Escribir "Promedio de presiones en rango normal (≤ 150 psi): ", suma_presiones_normales / contador_normales, " psi"
+        Escribir "Total de lecturas normales procesadas: ", contador_normales
+    Sino
+        Escribir "No se registraron presiones en rango normal durante la sesión."
+        Si presion_maxima > 0 Entonces
+            Escribir "Presión más alta registrada (toda crítica): ", presion_maxima, " psi"
+        Sino
+            Escribir "No se ingresaron lecturas válidas."
+        FinSi
+    FinSi
+    Escribir "================================"
+FinAlgoritmo
+
+=========================================================================================================================
+
+1. Variables utilizadas
+Variable	Tipo	Propósito
+presion_ingresada	Real	Valor ingresado por el usuario en cada iteración
+presion	Real	Almacena la presión actual (solo si es positiva)
+presion_maxima	Real	Mayor presión registrada en toda la sesión
+suma_presiones_normales	Real	Acumulador de presiones ≤ 150 psi
+contador_normales	Entero	Número de lecturas en rango normal
+2. Lógica del algoritmo
+Paso 1: Inicializar variables
+
+presion_maxima se inicia en -1 para poder detectar la primera lectura (ya que las presiones siempre son positivas)
+
+Paso 2: Bucle Mientras presion_ingresada > 0
+
+Solicitar lectura de presión
+
+Si es positiva, procesar:
+
+Actualizar la presión máxima
+
+Evaluar con Si si supera 150 psi:
+
+Si > 150: Mostrar "Alerta Crítica" (no se suma al promedio)
+
+Si ≤ 150: Mostrar "Presión normal", acumular para promedio
+
+Paso 3: Al salir del bucle (se ingresó 0 o negativo)
+
+Calcular y mostrar el promedio de presiones normales
+
+Mostrar la presión máxima de toda la sesión
+
+=========================================================================================================================
+
+=== ANÁLISIS DE SENSOR DE PRESIÓN INDUSTRIAL ===
+Ingrese lecturas de presión (psi) - Valores positivos para continuar
+Para finalizar, ingrese 0 o un número negativo
+
+Ingrese la lectura de presión (psi):
+120
+>> Presión normal: 120 psi
+
+Ingrese la lectura de presión (psi):
+160
+>> ALERTA CRÍTICA: Presión de 160 psi excede el límite seguro (150 psi)
+
+Ingrese la lectura de presión (psi):
+95
+>> Presión normal: 95 psi
+
+Ingrese la lectura de presión (psi):
+200
+>> ALERTA CRÍTICA: Presión de 200 psi excede el límite seguro (150 psi)
+
+Ingrese la lectura de presión (psi):
+0
+
+================================
+FIN DE LA SESIÓN DE MONITOREO
+================================
+Presión más alta registrada en toda la sesión: 200 psi
+Promedio de presiones en rango normal (≤ 150 psi): 107.5 psi
+Total de lecturas normales procesadas: 2
+================================
